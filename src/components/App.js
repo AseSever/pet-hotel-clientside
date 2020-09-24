@@ -15,7 +15,7 @@ class App extends React.Component {
 
           <Route exact path="/" component={DashboardPage} />
           <Route exact path="/owners" component={ManageOwnersPage} />
-
+          
         </div>
       </Router>
     );

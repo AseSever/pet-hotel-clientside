@@ -10,6 +10,7 @@ class PetListItem extends Component {
 
     return (
       <div>
+        
         <td>{pet.owner}</td>
         <td>{pet.pet_name}</td>
         <td>{pet.breed}</td>
