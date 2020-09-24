@@ -4,6 +4,7 @@ import { Button, Container, Grid, TextField, Typography } from '@material-ui/cor
 import OwnersTable from '../OwnersTable/OwnersTable';
 
 class ManageOwnersPage extends Component {
+
     state = {
         newOwner: ''
     }

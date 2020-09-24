@@ -10,6 +10,11 @@ class DashboardPage extends Component {
     this.props.dispatch({
       type: 'FETCH_PETS'
     })
+    // fetch owners for dom
+    this.props.dispatch({
+      type: 'FETCH_OWNERS'
+    })
+    
   }
 
   render() {
