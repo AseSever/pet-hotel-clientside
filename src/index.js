@@ -1,13 +1,48 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import logger from 'redux-logger';
 import './index.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
+import { Provider } from 'react-redux';
+
+const sagaMiddleware = createSagaMiddleware();
+
+const petReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'SET_PETS':
+      return action.payload
+    default:
+      return state;
+  }
+};
+
+const ownerReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'SET_OWNERS':
+      return action.payload
+    default:
+      return state;
+  }
+};
+
+const store = createStore(
+  combineReducers({
+    petReducer,
+    ownerReducer
+  }),
+  applyMiddleware(sagaMiddleware, logger)
+);
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 
