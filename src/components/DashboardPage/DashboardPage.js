@@ -27,7 +27,7 @@ class DashboardPage extends Component {
             <th>Actions</th>
           </tr>
           <tr>
-            {this.props.pets.map(pet => {
+            {this.props.reduxState.petReducer && this.props.reduxState.petReducer.map(pet => {
               return (
                 <PetListItems key={pet.id} pet={pet} /> // Component for pets 
               )
