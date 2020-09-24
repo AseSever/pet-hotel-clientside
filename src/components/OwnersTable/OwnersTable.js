@@ -22,9 +22,8 @@ function OwnersTable(props) {
                 </TableRow>
             </TableHead>
             <TableBody>
-                {/* MAP OWNERS HERE */}
-                {props.reduxState.owners && props.reduxState.owners.map( owner => (
-                    <OwnersTableRow />
+                {props.reduxState.ownerReducer && props.reduxState.ownerReducer.map( owner => (
+                    <OwnersTableRow key={owner.id} owner={owner}/>
                 ))}
             </TableBody>
 

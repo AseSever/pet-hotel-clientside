@@ -10,7 +10,7 @@ function OwnersTableRow(props) {
 
   return (
     <TableRow>
-        <TableCell>Name</TableCell>
+        <TableCell>{props.owner.name}</TableCell>
         <TableCell>Number of Pets</TableCell>
         <TableCell><Button variant="contained" color="secondary">Delete</Button></TableCell>
     </TableRow>
