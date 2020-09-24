@@ -27,7 +27,7 @@ function* fetchPets() {
 const petReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_PETS':
-      return action.payload
+      return action.payload.data
     default:
       return state;
   }
@@ -36,7 +36,7 @@ const petReducer = (state = [], action) => {
 const ownerReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_OWNERS':
-      return action.payload
+      return action.payload.data
     default:
       return state;
   }
@@ -56,19 +56,30 @@ function* addOwner(action) {
 function* fetchOwners() {
     try {
       //gets owners
-      let owners = yield axios.get('/owner');
+      let response = yield axios.get('/owner');
       //sets the reducer
-      yield put({ type: 'SET_OWNERS', payload: owners })
+      yield put({ type: 'SET_OWNERS', payload: response.data })
 
   } catch(error){
     console.log('error in getting owners', error);
   }};
 
+function* deleteOwner(action) {
+    try {
+      //sends delete request with owner id
+      yield axios.delete(`/owner/${action.payload}`);
+      //requests the owners again
+      yield put({ type: 'FETCH_OWNERS' })
+
+  } catch(error){
+    console.log('error in deleting owner', error);
+  }};
 
 
 function* watcherSaga() {
   yield takeLatest('ADD_OWNER', addOwner);
-  yield takeLatest('FETCH_OWNERS', fetchOwners)
+  yield takeLatest('FETCH_OWNERS', fetchOwners);
+  yield takeLatest('DELETE_OWNER', deleteOwner);
 }
 
 const sagaMiddleware = createSagaMiddleware();
