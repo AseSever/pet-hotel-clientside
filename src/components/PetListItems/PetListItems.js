@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import mapStoreToProps from '../../redux/mapStoreToProps';
+
 
 
 class PetListItem extends Component {
@@ -12,6 +12,7 @@ class PetListItem extends Component {
 
     return (
       <div>
+        
         <td>{pet.owner}</td>
         <td>{pet.pet_name}</td>
         <td>{pet.breed}</td>
@@ -30,4 +31,4 @@ class PetListItem extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(PetListItem);
+export default connect()(PetListItem);

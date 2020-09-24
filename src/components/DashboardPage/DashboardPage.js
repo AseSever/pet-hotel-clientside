@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PetListItems from '../PetListItems/PetListItems';
+import ManagePetsPage from '../ManagePetsPage/ManagePetsPage';
+
+import {
+  Grid
+} from '@material-ui/core';
 
 class DashboardPage extends Component {
+
+  state = {
+    pet: '',
+    breed: '',
+    color: '',
+    owner: '',
+  }
 
   componentDidMount = () => {
     // fetch pets for dom
@@ -11,27 +23,58 @@ class DashboardPage extends Component {
     })
   }
 
+  handlePetInputs = (propertyName) => (event) => {
+    console.log(`In change of ${propertyName}`);
+
+    this.setState({
+      ...this.state,
+      [propertyName]: event.target.value,
+    });
+  }
+
+  handlePetSubmit = (event) => {
+    event.preventDefault();
+    this.props.dispatch(
+      {
+        type: 'ADD_PET',
+        payload: this.state
+      });
+
+    this.props.history.push('/mynotes');
+  }
+
   render() {
     return (
       // Show Pets here
       <div>
+        <form onSubmit={this.handlePetSubmit}>
+          <ManagePetsPage
+            handlePetInputs={this.handlePetInputs}
+            newPet={this.state}
+          />
+        </form>
+
         <p>Dashboard Page</p>
         <table>
-          <tr>
-            <th>Owner</th>
-            <th>Pet</th>
-            <th>Breed</th>
-            <th>Color</th>
-            <th>Checked In</th>
-            <th>Actions</th>
-          </tr>
-          <tr>
-            {this.props.pets.map(pet => {
+          <tbody>
+            <tr>
+              <th>Owner</th>
+              <th>Pet</th>
+              <th>Breed</th>
+              <th>Color</th>
+              <th>Checked In</th>
+              <th>Actions</th>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+              {/* {this.props.pets.map(pet => {
               return (
                 <PetListItems key={pet.id} pet={pet} /> // Component for pets 
               )
-            })}
-          </tr>
+            })} */}
+            </tr>
+          </tbody>
         </table>
       </div>
     );
