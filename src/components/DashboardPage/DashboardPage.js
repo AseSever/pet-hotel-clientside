@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import PetListItems from '../PetListItems/PetListItems';
 
 class DashboardPage extends Component {
 
