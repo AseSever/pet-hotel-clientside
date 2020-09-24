@@ -11,17 +11,7 @@ import { Provider } from 'react-redux';
 import axios from 'axios';
 
 
-function* fetchPets() {
-  try {
-    const response = yield axios.get('/pets')
-    console.log(response.data);
 
-    yield put({ type: 'SET_PETS', payload: response.data})
-  } catch (err) {
-    console.log('Error in fetchPets saga');
-    
-  }
-}
 
 
 const petReducer = (state = [], action) => {
@@ -41,6 +31,29 @@ const ownerReducer = (state = [], action) => {
       return state;
   }
 };
+
+function* fetchPets() {
+  try {
+    const response = yield axios.get('/pets')
+    console.log(response.data);
+
+    yield put({ type: 'SET_PETS', payload: response.data});
+  } catch (err) {
+    console.log('Error in fetchPets saga');
+    
+  }
+}
+
+function* addPet(action) {
+  try {
+    yield axios.post('/pets', action.payload);
+
+    yield put({ type: 'FETCH_PETS'});
+  } catch (err) {
+    console.log('Error in addPet saga');
+    
+  }
+}
 
 function* addOwner(action) {
     try {
@@ -79,7 +92,12 @@ function* deleteOwner(action) {
 function* watcherSaga() {
   yield takeLatest('ADD_OWNER', addOwner);
   yield takeLatest('FETCH_OWNERS', fetchOwners);
+
+  yield takeLatest('FETCH_PETS', fetchPets);
+  yield takeLatest('ADD_PET', addPet);
+
   yield takeLatest('DELETE_OWNER', deleteOwner);
+
 }
 
 const sagaMiddleware = createSagaMiddleware();
