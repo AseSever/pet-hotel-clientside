@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Button, TableCell, TableRow } from '@material-ui/core'
 
 
 function OwnersTableRow(props) {
-  // Using hooks we're creating local state for a "heading" variable with
-  // a default value of 'Functional Component'
 
   const handleOwnerDelete = (ownerId) => {
     props.dispatch({ type: "DELETE_OWNER", payload: ownerId })
