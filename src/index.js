@@ -10,6 +10,19 @@ import { Provider } from 'react-redux';
 
 const sagaMiddleware = createSagaMiddleware();
 
+function* fetchPets() {
+  try {
+    const response = yield axios.get('/pets')
+    console.log(response.data);
+
+    yield put({ type: 'SET_PETS', payload: response.data})
+  } catch (err) {
+    console.log('Error in fetchPets saga');
+    
+  }
+}
+
+
 const petReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_PETS':
