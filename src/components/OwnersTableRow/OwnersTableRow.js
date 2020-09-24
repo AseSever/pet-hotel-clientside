@@ -8,6 +8,7 @@ function OwnersTableRow(props) {
   // a default value of 'Functional Component'
   const [heading, setHeading] = useState('Owners Table Row');
 
+
   return (
     <TableRow>
         <TableCell>{props.owner.name}</TableCell>
