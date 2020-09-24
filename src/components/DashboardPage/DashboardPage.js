@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import PetListItems from '../PetListItems/PetListItems';
 import ManagePetsPage from '../ManagePetsPage/ManagePetsPage';
+
 
 import {
   Grid
@@ -56,6 +58,7 @@ class DashboardPage extends Component {
 
         <p>Dashboard Page</p>
         <table>
+
           <tbody>
             <tr>
               <th>Owner</th>
@@ -68,11 +71,14 @@ class DashboardPage extends Component {
           </tbody>
           <tbody>
             <tr>
-              {/* {this.props.pets.map(pet => {
+      
+            {this.props.reduxState.petReducer && this.props.reduxState.petReducer.map(pet => {
+
               return (
                 <PetListItems key={pet.id} pet={pet} /> // Component for pets 
               )
             })} */}
+
             </tr>
           </tbody>
         </table>

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-
-
 class PetListItem extends Component {
   
 
@@ -17,7 +15,7 @@ class PetListItem extends Component {
         <td>{pet.pet_name}</td>
         <td>{pet.breed}</td>
         <td>{pet.color}</td>
-        <td>{!pet.checked_in ? 'yes' : 'no'}</td>
+        <td>{!pet.checked_in ? "yes" : "no"}</td>
         <td>
             <button>Delete</button>
             {!pet.checked_in ?
