@@ -31,8 +31,6 @@ const StyledTableRow = withStyles((theme) => ({
 
 function PetListItem(props) {
 
-
-    
     const pet = props.pet
 
     return (
@@ -46,19 +44,19 @@ function PetListItem(props) {
                 <StyledTableCell>
                     <Button
                         color="secondary"
-                        onClick={props.dispatch({ type: 'DELETE_PET', payload: pet.id })}
+                        onClick={() => props.dispatch({ type: 'DELETE_PET', payload: pet.id })}
                     >
                         Delete
                     </Button>
                     {pet.checked_in ?
                         <Button
-                            onClick={props.dispatch({ type: 'CHECK_OUT', payload: pet.id})}
+                            onClick={() => props.dispatch({ type: 'CHECK_OUT', payload: pet.id})}
                         >
                             Check Out
                         </Button>
                         :
                         <Button
-                            onClick={props.dispatch({ type: 'CHECK_IN', payload: pet.id})}
+                            onClick={() => props.dispatch({ type: 'CHECK_IN', payload: pet.id})}
                         >
                             Check In
                         </Button>
