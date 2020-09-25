@@ -81,7 +81,8 @@ class DashboardPage extends Component {
             <Table style={{
               border: "1px solid lightgrey",
               borderRadius: "2px",
-              margin: "20px"
+              margin: "20px",
+              minWidth: "80%",
             }}>
               <TableHead >
                 <TableRow >
