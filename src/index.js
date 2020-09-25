@@ -57,6 +57,7 @@ function* addPet(action) {
 function* addOwner(action) {
     try {
       //posts new owner
+      console.log(action.payload)
       yield axios.post('/owner', action.payload);
       //requests the owners again
       yield put({ type: 'FETCH_OWNERS' })

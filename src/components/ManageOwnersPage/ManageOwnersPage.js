@@ -6,7 +6,7 @@ import OwnersTable from '../OwnersTable/OwnersTable';
 class ManageOwnersPage extends Component {
 
     state = {
-        newOwner: ''
+        name: ''
     }
 
     componentDidMount = () => {
@@ -19,15 +19,18 @@ class ManageOwnersPage extends Component {
         })
       }
 
-    handleChangeForNewOwner = (event) => {
+    handleChangeForName = (event) => {
         this.setState({
-            newOwner: event.target.value
+            name: event.target.value
         })
     }
 
     handleOwnerSubmit = () => {
-        if ( this.state.newOwner ) {
-            this.props.dispatch({type: 'ADD_OWNER', payload: this.state.newOwner})
+        if ( this.state.name ) {
+            this.props.dispatch({type: 'ADD_OWNER', payload: this.state})
+            this.setState({
+                name: ''
+            })
         } else {
             alert("Please enter the owner's name!")
         }
@@ -38,8 +41,8 @@ class ManageOwnersPage extends Component {
             <Container>
                 <Typography variant="h3">Manage Owners Page</Typography>
                 <Typography variant="h5">Add Owner</Typography>
-                <TextField value={this.state.newOwner} onChange={this.handleChangeForNewOwner}></TextField>
-                <Button variant="contained">Submit</Button>
+                <TextField value={this.state.name} onChange={this.handleChangeForName}></TextField>
+                <Button variant="contained" onClick={this.handleOwnerSubmit}>Submit</Button>
                 <OwnersTable />
             </Container>
         );
