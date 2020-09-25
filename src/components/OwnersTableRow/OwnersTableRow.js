@@ -3,15 +3,20 @@ import { connect } from 'react-redux';
 import { Button, TableCell, TableRow } from '@material-ui/core'
 
 
-function OwnersTableRow(props) {
 
+function OwnersTableRow(props) {
+  
   const handleOwnerDelete = (ownerId) => {
     props.dispatch({ type: "DELETE_OWNER", payload: ownerId })
   }
   return (
     <TableRow>
         <TableCell>{props.owner.name}</TableCell>
-        <TableCell>Number of Pets</TableCell>
+        <TableCell>
+            {props.reduxState.petReducer 
+            && 
+            (props.reduxState.petReducer.reduce((accumulator, pet) => { return pet.owner_id == props.owner.id ? accumulator + 1 : accumulator}, 0))}
+        </TableCell>
         <TableCell>
             <Button 
                 variant="contained" 
@@ -24,6 +29,10 @@ function OwnersTableRow(props) {
   );
 }
 
+const mapStateToProps = (reduxState) => {
+    return {
+      reduxState
+    }
+  }
 
-
-export default connect()(OwnersTableRow);
+export default connect(mapStateToProps)(OwnersTableRow);

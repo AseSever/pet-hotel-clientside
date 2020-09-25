@@ -5,8 +5,6 @@ import { Typography } from '@material-ui/core';
 
 const Nav = (props) => {
 
-
-
   return (
     <div className="nav">
       <Link to="/home">
