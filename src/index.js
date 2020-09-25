@@ -12,12 +12,10 @@ import axios from 'axios';
 
 
 
-
-
 const petReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_PETS':
-      return action.payload.data
+      return action.payload
     default:
       return state;
   }
@@ -26,7 +24,7 @@ const petReducer = (state = [], action) => {
 const ownerReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_OWNERS':
-      return action.payload.data
+      return action.payload
     default:
       return state;
   }
@@ -45,12 +43,13 @@ function* fetchPets() {
 }
 
 function* addPet(action) {
+  console.log(action.payload);
   try {
     yield axios.post('/pets', action.payload);
 
-    yield put({ type: 'FETCH_PETS'});
+    // yield put({ type: 'FETCH_PETS'});
   } catch (err) {
-    console.log('Error in addPet saga');
+    console.log('Error in addPet saga', err);
     
   }
 }
