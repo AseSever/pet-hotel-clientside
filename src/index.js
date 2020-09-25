@@ -99,11 +99,31 @@ function* deleteOwner(action) {
     console.log('error in deleting owner', error);
   }};
 
+function* checkIn(action) {
+  try {
+    console.log(action.payload);
+    yield axios.put(`/pets/${action.payload}`, {check: "in"})
+    yield put({ type: 'FETCH_PETS' })
+  } catch (error) {
+    console.log('error in checking in pet', error);
+  }  
+}
+
+function* checkOut(action) {
+  try {
+    console.log(action.payload);
+    yield axios.put(`/pets/${action.payload}`, {check: "out"})
+    yield put({ type: 'FETCH_PETS' })
+  } catch (error) {
+    console.log('error in checking out pet', error);
+  }  
+}
 
 function* watcherSaga() {
   yield takeLatest('ADD_OWNER', addOwner);
   yield takeLatest('FETCH_OWNERS', fetchOwners);
-
+  yield takeLatest('CHECK_IN', checkIn)
+  yield takeLatest('CHECK_OUT', checkOut)
   yield takeLatest('FETCH_PETS', fetchPets);
   yield takeLatest('ADD_PET', addPet);
 

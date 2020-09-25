@@ -21,6 +21,7 @@ class DashboardPage extends Component {
     breed: '',
     color: '',
     owner: '',
+    checked: 'in'
   }
 
   componentDidMount = () => {
