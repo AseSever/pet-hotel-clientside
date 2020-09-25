@@ -17,7 +17,7 @@ import axios from 'axios';
 const petReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_PETS':
-      return action.payload.data
+      return action.payload
     default:
       return state;
   }
@@ -26,7 +26,7 @@ const petReducer = (state = [], action) => {
 const ownerReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_OWNERS':
-      return action.payload.data
+      return action.payload
     default:
       return state;
   }

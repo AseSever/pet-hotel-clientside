@@ -77,7 +77,7 @@ class DashboardPage extends Component {
               return (
                 <PetListItems key={pet.id} pet={pet} /> // Component for pets 
               )
-            })} */}
+            })}
 
             </tr>
           </tbody>
