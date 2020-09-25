@@ -36,8 +36,8 @@ function PetListItem(props) {
     const pet = props.pet
 
     return (
-        <>
-            <StyledTableRow component="th" scope="row">
+        
+            <StyledTableRow component="tr" scope="row">
                 <StyledTableCell>{pet.name}</StyledTableCell>
                 <StyledTableCell>{pet.pet_name}</StyledTableCell>
                 <StyledTableCell>{pet.breed}</StyledTableCell>
@@ -65,7 +65,7 @@ function PetListItem(props) {
                     }
                 </StyledTableCell>
             </StyledTableRow>
-        </>
+        
     );
 
 }
