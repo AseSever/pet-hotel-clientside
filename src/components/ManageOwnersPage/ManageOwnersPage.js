@@ -8,6 +8,16 @@ class ManageOwnersPage extends Component {
         newOwner: ''
     }
 
+    componentDidMount = () => {
+        // fetch pets for dom
+        this.props.dispatch({
+          type: 'FETCH_PETS'
+        })
+        this.props.dispatch({
+          type: 'FETCH_OWNERS'
+        })
+      }
+
     handleChangeForNewOwner = (event) => {
         this.setState({
             newOwner: event.target.value

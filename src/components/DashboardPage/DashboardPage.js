@@ -6,7 +6,12 @@ import ManagePetsPage from '../ManagePetsPage/ManagePetsPage';
 
 
 import {
-  Grid
+  Grid,
+  Table,
+  TableBody,
+  TableHead,
+  TableCell,
+  TableRow,
 } from '@material-ui/core';
 
 class DashboardPage extends Component {
@@ -44,47 +49,59 @@ class DashboardPage extends Component {
         type: 'ADD_PET',
         payload: this.state
       });
-
-    this.props.history.push('/mynotes');
   }
 
+  font = { fontWeight: "bold" }
+
   render() {
+
+
+    console.log(this.state)
     return (
+
       // Show Pets here
       <div>
-        <form onSubmit={this.handlePetSubmit}>
-          <ManagePetsPage
-            handlePetInputs={this.handlePetInputs}
-            newPet={this.state}
-          />
-        </form>
+        <Grid container justify="center">
+          <Grid item>
+            <form onSubmit={this.handlePetSubmit}>
+              <ManagePetsPage
+                handlePetInputs={this.handlePetInputs}
+                newPet={this.state}
+              />
+            </form>
+          </Grid>
+        </Grid>
+        <Grid
+          container
+          justify="center"
 
-        <p>Dashboard Page</p>
-        <table>
-
-          <tbody>
-            <tr>
-              <th>Owner</th>
-              <th>Pet</th>
-              <th>Breed</th>
-              <th>Color</th>
-              <th>Checked In</th>
-              <th>Actions</th>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr>
-      
-            {this.props.reduxState.petReducer && this.props.reduxState.petReducer.map(pet => {
-
-              return (
-                <PetListItems key={pet.id} pet={pet} /> // Component for pets 
-              )
-            })} */}
-
-            </tr>
-          </tbody>
-        </table>
+        >
+          <Grid item>
+            <Table style={{
+              border: "1px solid lightgrey",
+              borderRadius: "2px",
+              margin: "20px"
+            }}>
+              <TableHead >
+                <TableRow >
+                  <TableCell style={this.font}>Owner</TableCell>
+                  <TableCell style={this.font}>Pet</TableCell>
+                  <TableCell style={this.font}>Breed</TableCell>
+                  <TableCell style={this.font}>Color</TableCell>
+                  <TableCell align="center" style={this.font}>Checked In</TableCell>
+                  <TableCell align="center" style={this.font}>Actions</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {this.props.reduxState.petReducer.map(pet => {
+                  return (
+                    <PetListItems key={pet.id} pet={pet} />
+                  )
+                })}
+              </TableBody>
+            </Table>
+          </Grid>
+        </Grid>
       </div>
     );
   };
