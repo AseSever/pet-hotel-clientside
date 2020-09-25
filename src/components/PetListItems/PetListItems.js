@@ -37,7 +37,7 @@ function PetListItem(props) {
 
     return (
         <>
-            <StyledTableRow component="th" scope="row">
+            <StyledTableRow component="tr" scope="row">
                 <StyledTableCell>{pet.name}</StyledTableCell>
                 <StyledTableCell>{pet.pet_name}</StyledTableCell>
                 <StyledTableCell>{pet.breed}</StyledTableCell>
