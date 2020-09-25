@@ -47,12 +47,23 @@ function* addPet(action) {
   try {
     yield axios.post('/pets', action.payload);
 
-    // yield put({ type: 'FETCH_PETS'});
+    yield put({ type: 'FETCH_PETS'});
   } catch (err) {
     console.log('Error in addPet saga', err);
     
   }
 }
+
+function* deletePet(action) {
+  console.log(action.payload);
+  try {
+    //sends delete request with pet id
+    yield axios.delete(`/pets/${action.payload}`);
+    //requests the owners again
+    yield put({ type: 'FETCH_PETS' })
+} catch(error){
+  console.log('error in deletePet', error);
+}};
 
 function* addOwner(action) {
     try {
@@ -71,7 +82,7 @@ function* fetchOwners() {
       //gets owners
       let response = yield axios.get('/owner');
       //sets the reducer
-      yield put({ type: 'SET_OWNERS', payload: response.data })
+      yield put({ type: 'SET_OWNERS', payload: response.data });
 
   } catch(error){
     console.log('error in getting owners', error);
@@ -97,6 +108,7 @@ function* watcherSaga() {
   yield takeLatest('ADD_PET', addPet);
 
   yield takeLatest('DELETE_OWNER', deleteOwner);
+  yield takeLatest('DELETE_PET', deletePet);
 
 }
 

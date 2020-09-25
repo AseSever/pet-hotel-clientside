@@ -31,8 +31,6 @@ const StyledTableRow = withStyles((theme) => ({
 
 function PetListItem(props) {
 
-
-    
     const pet = props.pet
 
     return (
