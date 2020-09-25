@@ -23,6 +23,9 @@ class DashboardPage extends Component {
     this.props.dispatch({
       type: 'FETCH_PETS'
     })
+    this.props.dispatch({
+      type: 'FETCH_OWNERS'
+    })
   }
 
   handlePetInputs = (propertyName) => (event) => {
